@@ -1,0 +1,2 @@
+# Keep the published repository LF-canonical; checkouts on any OS stay parseable.
+* text=auto eol=lf
