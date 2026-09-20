@@ -15,7 +15,7 @@
 
 ## 1. 安装
 
-三种位置任选其一。**推荐方式 1**：装一次，所有项目都生效。
+四种方式任选其一。**推荐方式 1**：装一次，所有项目都生效；方式 4 供没有 git、或需要 zip 上传的入口使用。
 
 ### 方式 1 · 用户级（全局生效）
 
@@ -48,6 +48,26 @@ git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames "<项
 ```
 
 `<skills-root>` 见下表。
+
+### 方式 4 · 下载 zip（没有 git，或要上传到要求 zip 的平台）
+
+到 [Releases](https://github.com/w2310670047-code/ai-eight-honors-eight-shames/releases/latest) 下载，**两种结构都给了**，按你的入口要求挑一个：
+
+| 资产 | zip 内部结构 | 适用场景 |
+|---|---|---|
+| `ai-eight-honors-eight-shames-v1.0.0.zip` | `ai-eight-honors-eight-shames/SKILL.md` | 解压到 skills 根即可用；也是"上传一个技能文件夹"这类入口的常见约定 |
+| `ai-eight-honors-eight-shames-v1.0.0-flat.zip` | `SKILL.md` 位于 zip 根目录 | 给要求 `SKILL.md` 直接落在 zip 根的入口 |
+
+第一种直接解压到 skills 根；第二种先建目录再解压：
+
+```
+<skills-root>/ai-eight-honors-eight-shames/     <- 先建这个目录
+  SKILL.md                                       <- 把 flat zip 解压进去
+```
+
+> **一层原则**：`SKILL.md` 与 skills 根之间只能隔一层目录。套成 `<root>/a/<name>/SKILL.md` 就不会被发现。
+>
+> **为什么给两种**：各平台对 zip 内部结构的要求并不统一，而我没能核到官方原文（`docs.claude.com` 已跳转迁移）。两种都给，避免你在某个上传入口前才卡住——如果你的平台只认其中一种，删掉另一个即可。
 
 ---
 
@@ -182,4 +202,6 @@ git -C "<skills-root>/ai-eight-honors-eight-shames" pull
 
 ## 8. 许可
 
-未声明许可。若要以 MIT 等许可发布，请补一个 `LICENSE` 文件（需要署名者）。
+[MIT](LICENSE) © 2026 wangcangxing
+
+可自由使用、修改、分发、商用，保留版权与许可声明即可。八条准则的内核来自网络流传的「AI 八荣八耻」说法，MIT 只覆盖本仓库的正文、判据与文档。
