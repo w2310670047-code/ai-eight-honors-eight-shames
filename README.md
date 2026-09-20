@@ -22,13 +22,13 @@
 Windows PowerShell：
 
 ```powershell
-git clone https://github.com/<你的用户名>/ai-eight-honors-eight-shames "$env:USERPROFILE\.dsh\skills\ai-eight-honors-eight-shames"
+git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames "$env:USERPROFILE\.dsh\skills\ai-eight-honors-eight-shames"
 ```
 
 macOS / Linux：
 
 ```bash
-git clone https://github.com/<你的用户名>/ai-eight-honors-eight-shames ~/.dsh/skills/ai-eight-honors-eight-shames
+git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames ~/.dsh/skills/ai-eight-honors-eight-shames
 ```
 
 ### 方式 2 · 项目级（只在该项目生效，优先级最高）
@@ -36,7 +36,7 @@ git clone https://github.com/<你的用户名>/ai-eight-honors-eight-shames ~/.d
 克隆到项目根目录下（**项目根 = 最近的、包含 `.git` 的祖先目录**；如果没有 `.git`，则取当前工作目录）：
 
 ```powershell
-git clone https://github.com/<你的用户名>/ai-eight-honors-eight-shames "<项目根>\.dsh\skills\ai-eight-honors-eight-shames"
+git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames "<项目根>\.dsh\skills\ai-eight-honors-eight-shames"
 ```
 
 ### 方式 3 · 手工复制（不想用 git）
