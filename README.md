@@ -19,7 +19,7 @@
 
 ## 1. 安装
 
-四种方式任选其一。**推荐方式 1**：装一次，所有项目都生效；方式 4 供没有 git、或需要 zip 上传的入口使用。
+四种方式任选其一。**推荐方式 1**：装一次，所有项目都生效；方式 4 供没有 git、或需要 zip 上传的入口使用。**想让它在每次开工前强制生效**，见本节末尾的「附加」。
 
 ### 方式 1 · 用户级（全局生效）
 
@@ -57,10 +57,10 @@ git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames "<项
 
 到 [Releases](https://github.com/w2310670047-code/ai-eight-honors-eight-shames/releases/latest) 下载，**两种结构都给了**，按你的入口要求挑一个：
 
-| 资产 | zip 内部结构 | 适用场景 |
+| 资产（`<版本>` 即 Release 版本号，如 `v1.0.1`） | zip 内部结构 | 适用场景 |
 |---|---|---|
-| `ai-eight-honors-eight-shames-v1.0.0.zip` | `ai-eight-honors-eight-shames/SKILL.md` | 解压到 skills 根即可用；也是"上传一个技能文件夹"这类入口的常见约定 |
-| `ai-eight-honors-eight-shames-v1.0.0-flat.zip` | `SKILL.md` 位于 zip 根目录 | 给要求 `SKILL.md` 直接落在 zip 根的入口 |
+| `ai-eight-honors-eight-shames-<版本>.zip` | `ai-eight-honors-eight-shames/SKILL.md` | 解压到 skills 根即可用；也是"上传一个技能文件夹"这类入口的常见约定 |
+| `ai-eight-honors-eight-shames-<版本>-flat.zip` | `SKILL.md` 位于 zip 根目录 | 给要求 `SKILL.md` 直接落在 zip 根的入口 |
 
 第一种直接解压到 skills 根；第二种先建目录再解压：
 
@@ -72,6 +72,35 @@ git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames "<项
 > **一层原则**：`SKILL.md` 与 skills 根之间只能隔一层目录。套成 `<root>/a/<name>/SKILL.md` 就不会被发现。
 >
 > **为什么给两种**：各平台对 zip 内部结构的要求并不统一，而我没能核到官方原文（`docs.claude.com` 已跳转迁移）。两种都给，避免你在某个上传入口前才卡住——如果你的平台只认其中一种，删掉另一个即可。
+
+### 附加 · 让它「开工前必读」（AGENTS.md 路线）
+
+**skill 是按需加载的**：模型在会话目录里看到摘要，自己决定要不要加载。也就是说，只装 skill，它仍然可能"没被想起来"。
+
+如果你希望这些准则**每次开工前都必须已经在上下文里**，办法不是改 skill，而是把它写进 **DSH 的指令文件**——这类文件由 `@deepseek-ai/dsh-agent-instructions` 在**每个会话的第一个请求**注入为持久基线，早于任何工具调用、早于 skill 目录刷新，模型无从"忘记加载"。本部署里这个插件已随 `dsh-base` 与 `cordis` preset 挂载，`maxBytes: 65536`。
+
+| 作用范围 | 文件 | 说明 |
+|---|---|---|
+| **全局（所有项目）** | `$DSH_HOME/AGENTS.md`（默认 `~/.dsh/AGENTS.md`） | 用户级基线 |
+| 单个项目 | `<项目根>/AGENTS.md`（或 `CLAUDE.md`） | 项目根 = 最近的含 `.git` 的祖先；更具体者优先 |
+| 本地覆盖 | `<项目根>/AGENTS.local.md`、`CLAUDE.local.md` | 通常不提交的本地补充 |
+
+写法建议：**不要把 `SKILL.md` 全文复制进去**——两处内容会各自漂移，改一处忘了另一处。正确做法是写**九条的约束核心 + 一句强制加载指令**：
+
+```markdown
+## 开工前必读
+在写或改任何文件、调用不熟悉的接口、重构、或声明「完成」之前，先用 `skill` 工具加载
+`ai-eight-honors-eight-shames`，按其全文执行。核心底线：先查证再调用、有歧义先问、
+业务只认事实、先复用再新造、结论必须带证据、按约定写、区分事实与推断、可回滚再改、
+有改动就留执行报告。
+```
+
+两点成本说明：
+
+- 基线**每个会话注入一次**并留在历史里直到压缩，不是每个请求都重发；
+- 总量受 `maxBytes` 限制，超预算时**先丢更宽的整份文件**，最后才截断最具体的那份。
+
+> 权威级别：AGENTS.md 属于**工作区指导**（guidance），不覆盖系统、开发者与用户的直接指令。它比"等模型自己想起某个 skill"强得多，但不是内核级强制。
 
 ---
 
