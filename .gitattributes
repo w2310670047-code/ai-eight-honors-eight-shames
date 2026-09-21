@@ -1,2 +1,5 @@
 # Keep the published repository LF-canonical; checkouts on any OS stay parseable.
 * text=auto eol=lf
+
+# Execution reports stay in the repository but out of distributed archives (git archive / Download ZIP).
+执行报告-*.md export-ignore
