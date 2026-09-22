@@ -233,7 +233,43 @@ git -C "<skills-root>/ai-eight-honors-eight-shames" pull
 
 ---
 
-## 8. 许可
+## 8. 与配套 skill 并用：优先级与裁决
+
+本准则**不谈「该写多少代码」**——那件事交给配套 skill。推荐 [Ponytail](https://github.com/DietrichGebert/ponytail)（MIT，14 万★ 量级）：它用一条**七级阶梯**回答「能不能不做 / 能不能一行」。
+
+### 两段式顺序（先用哪个）
+
+1. **先用本 skill 问「这事该不该做」** —— 第 1 条要查证依据、第 2/3 条要事实与人类确认、第 4 条要「先搜复用」。**它决定要不要做、凭什么做。**
+2. **再用 Ponytail 问「能不能一行做完」** —— 它决定**做多小**：① 该不该存在 ② 代码库里已有 ③ 标准库 ④ 平台原生特性 ⑤ 已装依赖 ⑥ 一行 ⑦ 最小实现。
+
+**顺序不能反**：先按 Ponytail 想「怎么最省」，容易把一个**还没搞懂的问题**草草做小；先按本 skill 把事实与边界弄清，再谈做多小，才安全。（Ponytail 自己也写了这条：「对理解问题绝不偷懒，阶梯只缩短方案，不缩短阅读」。）
+
+### 冲突裁决（两边都想管同一件事时）
+
+| 冲突点 | 谁赢 | 依据 |
+|---|---|---|
+| Ponytail「代码优先、解释 ≤3 行」 vs 本 skill 第 9 条要求执行报告 | **本 skill** | Ponytail 自己写明：用户明确要求的解释（报告、走查、分阶段笔记）**不算债务**，应完整给出 |
+| Ponytail `ultra`「先 ship 再质疑」「别停在你能默认的答案上」 vs 本 skill 第 2/3 条「有歧义先问、不臆想业务」 | **本 skill** | 需求与业务口径属于「影响结果的分歧」，必须先确认；建议 Ponytail 停在 `lite`/`full` |
+| 非编码任务 | **本 skill**（Ponytail 不覆盖） | Ponytail 明写「非 coding 请求不要用」 |
+| 能否省掉校验／错误处理／安全／可访问性 | **都不能** | 两边一致：Ponytail 明写这些永不简化；本 skill 第 5/6 条要求验证与合规 |
+
+### 安装 Ponytail（DSH 环境）
+
+```powershell
+# 1) 克隆留档（便于更新与溯源）
+git clone https://github.com/DietrichGebert/ponytail "$env:USERPROFILE\.dsh\third-party\ponytail"
+
+# 2) 把 6 个 skill 装进 DSH 的 skills 根
+Copy-Item "$env:USERPROFILE\.dsh\third-party\ponytail\skills\*" "$env:USERPROFILE\.dsh\skills\" -Recurse -Force
+```
+
+装完多出 6 个 skill：`ponytail`、`ponytail-review`、`ponytail-audit`、`ponytail-debt`、`ponytail-gain`、`ponytail-help`。
+
+> ⚠️ **一处必须做的改动**：Ponytail 主 skill 的 `description` 原文 **826 字符**，超过 DSH 会话目录的 **500 字符**上限，会被截断并丢掉后半段触发词（`yagni`、`do less`、过度工程等）。安装时需把该字段压到 500 以内（本机用的是 **444 字符**版本；其余 frontmatter 字段与正文与上游**逐字节一致**）。`git pull` 更新上游后**需要重做这一步**。
+
+---
+
+## 9. 许可
 
 [MIT](LICENSE) © 2026 wangcangxing
 
