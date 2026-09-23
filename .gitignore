@@ -9,3 +9,7 @@ desktop.ini
 # Local editor settings
 .vscode/
 .idea/
+
+# Plugin packaging (package.json exists, so local installs/packs create these)
+node_modules/
+*.tgz

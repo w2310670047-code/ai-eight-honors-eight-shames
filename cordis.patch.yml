@@ -1,0 +1,7 @@
+# ai-eight-honors-eight-shames bundle patch: mount the skill row into the host
+# skill registry (`ctx.skills`), so every agent preset's scope chain merges the
+# skill. Applied over the dsh-base layer; later layers can still address this
+# row by id.
+- insert:
+    - id: ai-eight-honors-eight-shames
+      name: 'ai-eight-honors-eight-shames'
