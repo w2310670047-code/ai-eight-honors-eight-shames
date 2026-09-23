@@ -13,3 +13,6 @@ desktop.ini
 # Plugin packaging (package.json exists, so local installs/packs create these)
 node_modules/
 *.tgz
+
+# Execution reports are LOCAL-ONLY work logs — never commit them
+执行报告-*.md
