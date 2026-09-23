@@ -14,5 +14,8 @@ desktop.ini
 node_modules/
 *.tgz
 
-# Execution reports are LOCAL-ONLY work logs — never commit them
+# Execution reports are LOCAL-ONLY work logs — never commit them.
 执行报告-*.md
+# ...except the monument: the one report deliberately kept in the repository
+# (the original rule-9 report). Never delete it, never `git rm --cached` it.
+!执行报告-20260921-1305.md

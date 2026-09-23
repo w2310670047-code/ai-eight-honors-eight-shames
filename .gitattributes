@@ -1,5 +1,9 @@
 # Keep the published repository LF-canonical; checkouts on any OS stay parseable.
 * text=auto eol=lf
 
-# Execution reports stay in the repository but out of distributed archives (git archive / Download ZIP).
+# Execution reports are local-only work logs and are never committed — with one
+# deliberate exception: the monument (执行报告-20260921-1305.md), the original
+# rule-9 report, which stays in the repository by design.
+# Reports stay out of distributed archives (git archive / Download ZIP): the
+# monument lives in the repository, not in the release artifacts.
 执行报告-*.md export-ignore
