@@ -19,7 +19,7 @@
 
 ## 1. 安装
 
-四种方式任选其一。**推荐方式 1**：装一次，所有项目都生效；方式 4 供没有 git、或需要 zip 上传的入口使用。**想让它在每次开工前强制生效**，见本节末尾的「附加」。
+五种方式任选其一，**只装其一即可**。**推荐方式 1**：装一次，所有项目都生效；方式 4 供没有 git、或需要 zip 上传的入口使用；方式 5 给「用插件管理器安装/升级」的 DSH 用户。**想让它在每次开工前强制生效**，见本节末尾的「附加」。
 
 ### 方式 1 · 用户级（全局生效）
 
@@ -73,6 +73,18 @@ git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames "<项
 >
 > **为什么给两种**：各平台对 zip 内部结构的要求并不统一，而我没能核到官方原文（`docs.claude.com` 已跳转迁移）。两种都给，避免你在某个上传入口前才卡住——如果你的平台只认其中一种，删掉另一个即可。
 
+### 方式 5 · DSH 插件（`dsh plugin add`）
+
+本仓库同时是一个**可安装的 DSH 插件**：`package.json` 声明 `dsh.bundle`，`cordis.patch.yml` 插入一行，由 `lib/index.js` 把本仓库的 `SKILL.md` 注册进 `ctx.skills`。装进某个 profile 后，**该 profile 的每个会话**都能看到它：
+
+```bash
+dsh plugin --profile <profile> add github:w2310670047-code/ai-eight-honors-eight-shames
+```
+
+- **正文只有一份**：插件直接读仓库根目录的 `SKILL.md`，不复制第二份内容，所以「改正文即时生效」在插件方式下同样成立。
+- **与方式 1–4 的关系**：同名 skill 只显示一个，胜出顺序见第 2 节的 rank 表（插件注册为 250，高于用户级 400/500，低于项目根 100/200）；两处正文本来就相同，装重了不会出现两个条目。
+- **什么时候值得用**：你希望用插件管理器统一安装、升级与卸载，或你的入口只接受插件包形态。
+
 ### 附加 · 让它「开工前必读」（AGENTS.md 路线）
 
 **skill 是按需加载的**：模型在会话目录里看到摘要，自己决定要不要加载。也就是说，只装 skill，它仍然可能"没被想起来"。
@@ -112,6 +124,7 @@ harness 会扫描若干 skills 根目录，**rank 数字小者胜出**（同名 
 |---|---|---|---|
 | 100 | `project-dsh` | `<项目根>/.dsh/skills` | 项目私有 |
 | 200 | `project-agents` | `<项目根>/.agents/skills` | 项目内跨 agent 共享 |
+| 250 | `runtime` | 插件注册（`dsh plugin add`，见方式 5） | 由插件把包内 `SKILL.md` 注册进 `ctx.skills`；无目录，正文读的是包内文件 |
 | 300 | `custom` | `customSkillDirs` 配置项 | 自定义根，需在组合里配置 |
 | 400 | `user-dsh` | `<DSH_HOME>/skills`（默认 `~/.dsh/skills`） | **用户级，全局生效** |
 | 500 | `user-agents` | `<agentsHome>/skills`（默认 `~/.agents/skills`） | 跨 agent 共享 |
@@ -206,6 +219,16 @@ whenToUse: 可选，补充触发时机。
 git -C "<skills-root>/ai-eight-honors-eight-shames" pull
 
 # 卸载：删掉整个目录即可
+```
+
+用**方式 5（插件）**装的，则按插件方式管理：
+
+```bash
+# 更新
+dsh plugin --profile <profile> add github:w2310670047-code/ai-eight-honors-eight-shames
+
+# 卸载
+dsh plugin --profile <profile> remove ai-eight-honors-eight-shames
 ```
 
 修改内容只需编辑 `SKILL.md`：
