@@ -1,5 +1,9 @@
 # AI 八荣八耻 · DSH Skill
 
+[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+
+**已在 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) 的 `skill` 分类收录** —— [条目](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/blob/main/data/plugins/w2310670047-code__ai-eight-honors-eight-shames.yml)由 PR [#5732](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/5732) 于 2026-09-24 00:57（+08:00）合并。
+
 面向 AI 编码代理的八条工作准则，打包成一个可直接安装的 **Agent Skill**（SKILL.md 格式）。
 
 它不做别的事：在代理动手写代码、调用不熟悉的接口、判断业务规则、重构既有实现、以及准备说"已完成"之前，提供一组**可核对**的判据，用来挡住瞎猜、臆想、越权重构、跳过验证和假装理解；并要求**每次用户提出需求或问题**都在项目根留下简要记录（第 9 条：`执行报告-首次运行.md` 与 `执行报告-变更记录.md`；有改动就记改动，没改任何文件就写明）。
