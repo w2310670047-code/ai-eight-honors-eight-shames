@@ -25,11 +25,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/w2310670047-code/ai-eight-honors-eight-shames.git"
+    "url": "git+https://github.com/wangcangxing/ai-eight-honors-eight-shames.git"
   },
-  "homepage": "https://github.com/w2310670047-code/ai-eight-honors-eight-shames",
+  "homepage": "https://github.com/wangcangxing/ai-eight-honors-eight-shames",
   "bugs": {
-    "url": "https://github.com/w2310670047-code/ai-eight-honors-eight-shames/issues"
+    "url": "https://github.com/wangcangxing/ai-eight-honors-eight-shames/issues"
   },
   "dependencies": {
     "yaml": "^2.4.2"

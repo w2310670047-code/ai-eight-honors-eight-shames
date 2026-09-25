@@ -30,13 +30,13 @@
 Windows PowerShell：
 
 ```powershell
-git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames "$env:USERPROFILE\.dsh\skills\ai-eight-honors-eight-shames"
+git clone https://github.com/wangcangxing/ai-eight-honors-eight-shames "$env:USERPROFILE\.dsh\skills\ai-eight-honors-eight-shames"
 ```
 
 macOS / Linux：
 
 ```bash
-git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames ~/.dsh/skills/ai-eight-honors-eight-shames
+git clone https://github.com/wangcangxing/ai-eight-honors-eight-shames ~/.dsh/skills/ai-eight-honors-eight-shames
 ```
 
 ### 方式 2 · 项目级（只在该项目生效，优先级最高）
@@ -44,7 +44,7 @@ git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames ~/.ds
 克隆到项目根目录下（**项目根 = 最近的、包含 `.git` 的祖先目录**；如果没有 `.git`，则取当前工作目录）：
 
 ```powershell
-git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames "<项目根>\.dsh\skills\ai-eight-honors-eight-shames"
+git clone https://github.com/wangcangxing/ai-eight-honors-eight-shames "<项目根>\.dsh\skills\ai-eight-honors-eight-shames"
 ```
 
 ### 方式 3 · 手工复制（不想用 git）
@@ -59,7 +59,7 @@ git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames "<项
 
 ### 方式 4 · 下载 zip（没有 git，或要上传到要求 zip 的平台）
 
-到 [Releases](https://github.com/w2310670047-code/ai-eight-honors-eight-shames/releases/latest) 下载，**两种结构都给了**，按你的入口要求挑一个：
+到 [Releases](https://github.com/wangcangxing/ai-eight-honors-eight-shames/releases/latest) 下载，**两种结构都给了**，按你的入口要求挑一个：
 
 | 资产（`<版本>` 即 Release 版本号，如 `v1.0.1`） | zip 内部结构 | 适用场景 |
 |---|---|---|
@@ -82,7 +82,7 @@ git clone https://github.com/w2310670047-code/ai-eight-honors-eight-shames "<项
 本仓库同时是一个**可安装的 DSH 插件**：`package.json` 声明 `dsh.bundle`，`cordis.patch.yml` 插入一行，由 `lib/index.js` 把本仓库的 `SKILL.md` 注册进 `ctx.skills`。装进某个 profile 后，**该 profile 的每个会话**都能看到它：
 
 ```bash
-dsh plugin --profile <profile> add github:w2310670047-code/ai-eight-honors-eight-shames
+dsh plugin --profile <profile> add github:wangcangxing/ai-eight-honors-eight-shames
 ```
 
 - **正文只有一份**：插件直接读仓库根目录的 `SKILL.md`，不复制第二份内容，所以「改正文即时生效」在插件方式下同样成立。
@@ -229,7 +229,7 @@ git -C "<skills-root>/ai-eight-honors-eight-shames" pull
 
 ```bash
 # 更新
-dsh plugin --profile <profile> add github:w2310670047-code/ai-eight-honors-eight-shames
+dsh plugin --profile <profile> add github:wangcangxing/ai-eight-honors-eight-shames
 
 # 卸载
 dsh plugin --profile <profile> remove ai-eight-honors-eight-shames
